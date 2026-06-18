@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
-import { Heart, Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ChevronDown, Heart, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { programs } from "./programs-data";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About Us" },
-  { href: "#programs", label: "Our Programs" },
-  { href: "#contact", label: "Contact Us" },
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About Us" },
+  { href: "/#contact", label: "Contact Us" },
 ];
 
 export function Navbar() {
@@ -44,20 +51,56 @@ export function Navbar() {
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary-soft hover:text-primary-deep"
-            >
-              {l.label}
-            </a>
-          ))}
+          <a
+            href="/#home"
+            className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary-soft hover:text-primary-deep"
+          >
+            Home
+          </a>
+          <a
+            href="/#about"
+            className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary-soft hover:text-primary-deep"
+          >
+            About Us
+          </a>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary-soft hover:text-primary-deep focus:outline-none">
+              Our Programs <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-64">
+              <DropdownMenuItem asChild>
+                <a href="/#programs" className="cursor-pointer font-medium">
+                  All Programs
+                </a>
+              </DropdownMenuItem>
+              {programs.map((p) => {
+                const Icon = p.icon;
+                return (
+                  <DropdownMenuItem key={p.slug} asChild>
+                    <Link
+                      to="/programs/$slug"
+                      params={{ slug: p.slug }}
+                      className="cursor-pointer"
+                    >
+                      <Icon className="h-4 w-4 text-primary" />
+                      <span>{p.title}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <a
+            href="/#contact"
+            className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary-soft hover:text-primary-deep"
+          >
+            Contact Us
+          </a>
         </nav>
 
         <div className="flex items-center gap-2">
           <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex">
-            <a href="#donate">
+            <a href="/#donate">
               <Heart className="h-4 w-4" /> Support Our Cause
             </a>
           </Button>
@@ -85,8 +128,29 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
+            <div className="mt-2 px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Our Programs
+            </div>
+            <a
+              href="/#programs"
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/85 hover:bg-primary-soft hover:text-primary-deep"
+            >
+              All Programs
+            </a>
+            {programs.map((p) => (
+              <Link
+                key={p.slug}
+                to="/programs/$slug"
+                params={{ slug: p.slug }}
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-3 py-2 text-sm text-foreground/85 hover:bg-primary-soft hover:text-primary-deep"
+              >
+                {p.title}
+              </Link>
+            ))}
             <Button asChild variant="hero" className="mt-2 sm:hidden">
-              <a href="#donate" onClick={() => setOpen(false)}>
+              <a href="/#donate" onClick={() => setOpen(false)}>
                 <Heart className="h-4 w-4" /> Support Our Cause
               </a>
             </Button>
