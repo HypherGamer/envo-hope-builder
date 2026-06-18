@@ -3,7 +3,7 @@ import { ArrowLeft, CheckCircle2, Heart } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { getProgram, programs } from "@/components/site/programs-data";
+import { getProgram, programs, type Program } from "@/components/site/programs-data";
 
 export const Route = createFileRoute("/programs/$slug")({
   head: ({ params }) => {
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/programs/$slug")({
 });
 
 function ProgramPage() {
-  const { program } = Route.useLoaderData();
+  const { program } = Route.useLoaderData() as { program: Program };
   const Icon = program.icon;
   const others = programs.filter((p) => p.slug !== program.slug);
 
