@@ -324,6 +324,7 @@ export const getPublicOutreachList = createServerFn({ method: "GET" }).handler(
       return items;
     } catch (err) {
       console.warn("Public outreach Firestore load failed (returning empty fallback):", err instanceof Error ? err.message : String(err));
+      setCached("public_outreach_list", []);
       return [];
     }
   },
