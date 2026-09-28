@@ -469,10 +469,10 @@ function requireReact() {
   return react.exports;
 }
 var reactExports = requireReact();
-const React = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
+const React__default = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
 const React2 = /* @__PURE__ */ _mergeNamespaces({
   __proto__: null,
-  default: React
+  default: React__default
 }, [reactExports]);
 var jsxRuntime = { exports: {} };
 var reactJsxRuntime_production = {};
@@ -514,10 +514,32 @@ function requireJsxRuntime() {
   return jsxRuntime.exports;
 }
 var jsxRuntimeExports = requireJsxRuntime();
+var jsxDevRuntime = { exports: {} };
+var reactJsxDevRuntime_production = {};
+var hasRequiredReactJsxDevRuntime_production;
+function requireReactJsxDevRuntime_production() {
+  if (hasRequiredReactJsxDevRuntime_production) return reactJsxDevRuntime_production;
+  hasRequiredReactJsxDevRuntime_production = 1;
+  var REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment");
+  reactJsxDevRuntime_production.Fragment = REACT_FRAGMENT_TYPE;
+  reactJsxDevRuntime_production.jsxDEV = void 0;
+  return reactJsxDevRuntime_production;
+}
+var hasRequiredJsxDevRuntime;
+function requireJsxDevRuntime() {
+  if (hasRequiredJsxDevRuntime) return jsxDevRuntime.exports;
+  hasRequiredJsxDevRuntime = 1;
+  {
+    jsxDevRuntime.exports = requireReactJsxDevRuntime_production();
+  }
+  return jsxDevRuntime.exports;
+}
+var jsxDevRuntimeExports = requireJsxDevRuntime();
 export {
-  React as R,
+  React__default as R,
   requireReact as a,
   React2 as b,
+  jsxDevRuntimeExports as c,
   getDefaultExportFromCjs as g,
   jsxRuntimeExports as j,
   reactExports as r

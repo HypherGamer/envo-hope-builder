@@ -80,44 +80,44 @@ const assets = {
   "/apple-touch-icon.png": {
     "type": "image/png",
     "etag": '"a7f-HdnJ2/qS5G9MCWDmvJTc7FGR2II"',
-    "mtime": "2026-09-28T11:13:46.356Z",
+    "mtime": "2026-09-28T14:12:40.424Z",
     "size": 2687,
     "path": "../public/apple-touch-icon.png"
+  },
+  "/favicon-48.png": {
+    "type": "image/png",
+    "etag": '"44d-MwAVjvSXn4+aivRGycs4INGZ6Zw"',
+    "mtime": "2026-09-28T14:12:40.424Z",
+    "size": 1101,
+    "path": "../public/favicon-48.png"
   },
   "/favicon.svg": {
     "type": "image/svg+xml",
     "etag": '"175-Dv1lAnA9oSd9dh+TVXJW0dZKCJU"',
-    "mtime": "2026-09-28T11:13:46.356Z",
+    "mtime": "2026-09-28T14:12:40.425Z",
     "size": 373,
     "path": "../public/favicon.svg"
-  },
-  "/og-image.jpg": {
-    "type": "image/jpeg",
-    "etag": '"ef19-1520riP0kyMJYXWFGwXyVOW5m+g"',
-    "mtime": "2026-09-28T11:13:46.356Z",
-    "size": 61209,
-    "path": "../public/og-image.jpg"
   },
   "/robots.txt": {
     "type": "text/plain; charset=utf-8",
     "etag": '"4a-kneS9R3Atq5oVyNqwWPClAt6pTw"',
-    "mtime": "2026-09-28T11:13:46.356Z",
+    "mtime": "2026-09-28T14:12:40.425Z",
     "size": 74,
     "path": "../public/robots.txt"
   },
   "/sitemap.xml": {
     "type": "application/xml",
     "etag": '"7f8-bvy5DlEFym3L0RRYRmHJEYB2HIQ"',
-    "mtime": "2026-09-28T11:13:46.356Z",
+    "mtime": "2026-09-28T14:12:40.425Z",
     "size": 2040,
     "path": "../public/sitemap.xml"
   },
-  "/favicon-48.png": {
-    "type": "image/png",
-    "etag": '"44d-MwAVjvSXn4+aivRGycs4INGZ6Zw"',
-    "mtime": "2026-09-28T11:13:46.356Z",
-    "size": 1101,
-    "path": "../public/favicon-48.png"
+  "/og-image.jpg": {
+    "type": "image/jpeg",
+    "etag": '"ef19-1520riP0kyMJYXWFGwXyVOW5m+g"',
+    "mtime": "2026-09-28T14:12:40.425Z",
+    "size": 61209,
+    "path": "../public/og-image.jpg"
   }
 };
 function readAsset(id) {

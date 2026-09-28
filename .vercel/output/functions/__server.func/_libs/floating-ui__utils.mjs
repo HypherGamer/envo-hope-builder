@@ -5,13 +5,13 @@ const round = Math.round;
 const floor = Math.floor;
 const createCoords = (v) => ({
   x: v,
-  y: v,
+  y: v
 });
 const oppositeSideMap = {
   left: "right",
   right: "left",
   bottom: "top",
-  top: "bottom",
+  top: "bottom"
 };
 function clamp(start, value, end) {
   return max(start, min(value, end));
@@ -45,14 +45,7 @@ function getAlignmentSides(placement, rects, rtl) {
   const alignment = getAlignment(placement);
   const alignmentAxis = getAlignmentAxis(placement);
   const length = getAxisLength(alignmentAxis);
-  let mainAlignmentSide =
-    alignmentAxis === "x"
-      ? alignment === (rtl ? "end" : "start")
-        ? "right"
-        : "left"
-      : alignment === "start"
-        ? "bottom"
-        : "top";
+  let mainAlignmentSide = alignmentAxis === "x" ? alignment === (rtl ? "end" : "start") ? "right" : "left" : alignment === "start" ? "bottom" : "top";
   if (rects.reference[length] > rects.floating[length]) {
     mainAlignmentSide = getOppositePlacement(mainAlignmentSide);
   }
@@ -60,16 +53,10 @@ function getAlignmentSides(placement, rects, rtl) {
 }
 function getExpandedPlacements(placement) {
   const oppositePlacement = getOppositePlacement(placement);
-  return [
-    getOppositeAlignmentPlacement(placement),
-    oppositePlacement,
-    getOppositeAlignmentPlacement(oppositePlacement),
-  ];
+  return [getOppositeAlignmentPlacement(placement), oppositePlacement, getOppositeAlignmentPlacement(oppositePlacement)];
 }
 function getOppositeAlignmentPlacement(placement) {
-  return placement.includes("start")
-    ? placement.replace("start", "end")
-    : placement.replace("end", "start");
+  return placement.includes("start") ? placement.replace("start", "end") : placement.replace("end", "start");
 }
 const lrPlacement = ["left", "right"];
 const rlPlacement = ["right", "left"];
@@ -109,21 +96,24 @@ function expandPaddingObject(padding) {
     top: (_padding$top = padding.top) != null ? _padding$top : 0,
     right: (_padding$right = padding.right) != null ? _padding$right : 0,
     bottom: (_padding$bottom = padding.bottom) != null ? _padding$bottom : 0,
-    left: (_padding$left = padding.left) != null ? _padding$left : 0,
+    left: (_padding$left = padding.left) != null ? _padding$left : 0
   };
 }
 function getPaddingObject(padding) {
-  return typeof padding !== "number"
-    ? expandPaddingObject(padding)
-    : {
-        top: padding,
-        right: padding,
-        bottom: padding,
-        left: padding,
-      };
+  return typeof padding !== "number" ? expandPaddingObject(padding) : {
+    top: padding,
+    right: padding,
+    bottom: padding,
+    left: padding
+  };
 }
 function rectToClientRect(rect) {
-  const { x, y, width, height } = rect;
+  const {
+    x,
+    y,
+    width,
+    height
+  } = rect;
   return {
     width,
     height,
@@ -132,7 +122,7 @@ function rectToClientRect(rect) {
     right: x + width,
     bottom: y + height,
     x,
-    y,
+    y
   };
 }
 function hasWindow() {
@@ -146,17 +136,11 @@ function getNodeName(node) {
 }
 function getWindow(node) {
   var _node$ownerDocument;
-  return (
-    (node == null || (_node$ownerDocument = node.ownerDocument) == null
-      ? void 0
-      : _node$ownerDocument.defaultView) || window
-  );
+  return (node == null || (_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.defaultView) || window;
 }
 function getDocumentElement(node) {
   var _ref;
-  return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null
-    ? void 0
-    : _ref.documentElement;
+  return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
 }
 function isNode(value) {
   if (!hasWindow()) {
@@ -183,12 +167,13 @@ function isShadowRoot(value) {
   return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
 }
 function isOverflowElement(element) {
-  const { overflow, overflowX, overflowY, display } = getComputedStyle(element);
-  return (
-    /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) &&
-    display !== "inline" &&
-    display !== "contents"
-  );
+  const {
+    overflow,
+    overflowX,
+    overflowY,
+    display
+  } = getComputedStyle(element);
+  return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && display !== "inline" && display !== "contents";
 }
 function isTableElement(element) {
   return /^(table|td|th)$/.test(getNodeName(element));
@@ -198,7 +183,8 @@ function isTopLayer(element) {
     if (element.matches(":popover-open")) {
       return true;
     }
-  } catch (_e) {}
+  } catch (_e) {
+  }
   try {
     return element.matches(":modal");
   } catch (_e) {
@@ -211,16 +197,7 @@ const isNotNone = (value) => !!value && value !== "none";
 let isWebKitValue;
 function isContainingBlock(elementOrCss) {
   const css = isElement(elementOrCss) ? getComputedStyle(elementOrCss) : elementOrCss;
-  return (
-    isNotNone(css.transform) ||
-    isNotNone(css.translate) ||
-    isNotNone(css.scale) ||
-    isNotNone(css.rotate) ||
-    isNotNone(css.perspective) ||
-    (!isWebKit() && (isNotNone(css.backdropFilter) || isNotNone(css.filter))) ||
-    willChangeRe.test(css.willChange || "") ||
-    containRe.test(css.contain || "")
-  );
+  return isNotNone(css.transform) || isNotNone(css.translate) || isNotNone(css.scale) || isNotNone(css.rotate) || isNotNone(css.perspective) || !isWebKit() && (isNotNone(css.backdropFilter) || isNotNone(css.filter)) || willChangeRe.test(css.willChange || "") || containRe.test(css.contain || "");
 }
 function getContainingBlock(element) {
   let currentNode = getParentNode(element);
@@ -236,8 +213,7 @@ function getContainingBlock(element) {
 }
 function isWebKit() {
   if (isWebKitValue == null) {
-    isWebKitValue =
-      typeof CSS !== "undefined" && CSS.supports && CSS.supports("-webkit-backdrop-filter", "none");
+    isWebKitValue = typeof CSS !== "undefined" && CSS.supports && CSS.supports("-webkit-backdrop-filter", "none");
   }
   return isWebKitValue;
 }
@@ -251,24 +227,25 @@ function getNodeScroll(element) {
   if (isElement(element)) {
     return {
       scrollLeft: element.scrollLeft,
-      scrollTop: element.scrollTop,
+      scrollTop: element.scrollTop
     };
   }
   return {
     scrollLeft: element.scrollX,
-    scrollTop: element.scrollY,
+    scrollTop: element.scrollY
   };
 }
 function getParentNode(node) {
   if (getNodeName(node) === "html") {
     return node;
   }
-  const result =
+  const result = (
     // Step into the shadow DOM of the parent of a slotted node.
     node.assignedSlot || // DOM Element detected.
     node.parentNode || // ShadowRoot detected.
-    (isShadowRoot(node) && node.host) || // Fallback.
-    getDocumentElement(node);
+    isShadowRoot(node) && node.host || // Fallback.
+    getDocumentElement(node)
+  );
   return isShadowRoot(result) ? result.host : result;
 }
 function getNearestOverflowAncestor(node) {
@@ -290,23 +267,13 @@ function getOverflowAncestors(node, list, traverseIframes) {
     traverseIframes = true;
   }
   const scrollableAncestor = getNearestOverflowAncestor(node);
-  const isBody =
-    scrollableAncestor ===
-    ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
+  const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
   const win = getWindow(scrollableAncestor);
   if (isBody) {
     const frameElement = getFrameElement(win);
-    return list.concat(
-      win,
-      win.visualViewport || [],
-      isOverflowElement(scrollableAncestor) ? scrollableAncestor : [],
-      frameElement && traverseIframes ? getOverflowAncestors(frameElement) : [],
-    );
+    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], frameElement && traverseIframes ? getOverflowAncestors(frameElement) : []);
   } else {
-    return list.concat(
-      scrollableAncestor,
-      getOverflowAncestors(scrollableAncestor, [], traverseIframes),
-    );
+    return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
   }
 }
 function getFrameElement(win) {
@@ -349,5 +316,5 @@ export {
   isHTMLElement as w,
   createCoords as x,
   round as y,
-  getComputedStyle as z,
+  getComputedStyle as z
 };

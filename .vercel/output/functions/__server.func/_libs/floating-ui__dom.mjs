@@ -1,38 +1,5 @@
-import {
-  c as computePosition$1,
-  o as offset$1,
-  s as shift$1,
-  f as flip$1,
-  a as size$1,
-  h as hide$1,
-  b as arrow$1,
-  l as limitShift$1,
-} from "./floating-ui__core.mjs";
-import {
-  p as getOverflowAncestors,
-  q as isElement,
-  t as getDocumentElement,
-  u as getWindow,
-  r as rectToClientRect,
-  v as floor,
-  w as isHTMLElement,
-  x as createCoords,
-  y as round,
-  k as max,
-  m as min,
-  z as getComputedStyle$1,
-  A as isTopLayer,
-  B as getParentNode,
-  C as isLastTraversableNode,
-  D as isTableElement,
-  E as isContainingBlock,
-  F as getContainingBlock,
-  G as getNodeName,
-  H as isOverflowElement,
-  I as getNodeScroll,
-  J as isWebKit,
-  K as getFrameElement,
-} from "./floating-ui__utils.mjs";
+import { c as computePosition$1, o as offset$1, s as shift$1, f as flip$1, a as size$1, h as hide$1, b as arrow$1, l as limitShift$1 } from "./floating-ui__core.mjs";
+import { p as getOverflowAncestors, q as isElement, t as getDocumentElement, u as getWindow, r as rectToClientRect, v as floor, w as isHTMLElement, x as createCoords, y as round, k as max, m as min, z as getComputedStyle$1, A as isTopLayer, B as getParentNode, C as isLastTraversableNode, D as isTableElement, E as isContainingBlock, F as getContainingBlock, G as getNodeName, H as isOverflowElement, I as getNodeScroll, J as isWebKit, K as getFrameElement } from "./floating-ui__utils.mjs";
 function getCssDimensions(element) {
   const css = getComputedStyle$1(element);
   let width = parseFloat(css.width) || 0;
@@ -48,7 +15,7 @@ function getCssDimensions(element) {
   return {
     width,
     height,
-    $: shouldFallback,
+    $: shouldFallback
   };
 }
 function unwrapElement(element) {
@@ -60,7 +27,11 @@ function getScale(element) {
     return createCoords(1);
   }
   const rect = domElement.getBoundingClientRect();
-  const { width, height, $ } = getCssDimensions(domElement);
+  const {
+    width,
+    height,
+    $
+  } = getCssDimensions(domElement);
   let x = ($ ? round(rect.width) : rect.width) / width;
   let y = ($ ? round(rect.height) : rect.height) / height;
   if (!x || !Number.isFinite(x)) {
@@ -71,7 +42,7 @@ function getScale(element) {
   }
   return {
     x,
-    y,
+    y
   };
 }
 const noOffsets = /* @__PURE__ */ createCoords(0);
@@ -82,7 +53,7 @@ function getVisualOffsets(element) {
   }
   return {
     x: win.visualViewport.offsetLeft,
-    y: win.visualViewport.offsetTop,
+    y: win.visualViewport.offsetTop
   };
 }
 function shouldAddVisualOffsets(element, isFixed, floatingOffsetParent) {
@@ -110,9 +81,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       scale = getScale(element);
     }
   }
-  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent)
-    ? getVisualOffsets(domElement)
-    : createCoords(0);
+  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
   let x = (clientRect.left + visualOffsets.x) / scale.x;
   let y = (clientRect.top + visualOffsets.y) / scale.y;
   let width = clientRect.width / scale.x;
@@ -126,10 +95,8 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       const iframeScale = getScale(currentIFrame);
       const iframeRect = currentIFrame.getBoundingClientRect();
       const css = getComputedStyle$1(currentIFrame);
-      const left =
-        iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
-      const top =
-        iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
+      const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
+      const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
       x *= iframeScale.x;
       y *= iframeScale.y;
       width *= iframeScale.x;
@@ -144,7 +111,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     width,
     height,
     x,
-    y,
+    y
   });
 }
 function getWindowScrollBarX(element, rect) {
@@ -160,20 +127,25 @@ function getHTMLOffset(documentElement, scroll) {
   const y = htmlRect.top + scroll.scrollTop;
   return {
     x,
-    y,
+    y
   };
 }
 function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
-  let { elements, rect, offsetParent, strategy } = _ref;
+  let {
+    elements,
+    rect,
+    offsetParent,
+    strategy
+  } = _ref;
   const isFixed = strategy === "fixed";
   const documentElement = getDocumentElement(offsetParent);
   const topLayer = elements ? isTopLayer(elements.floating) : false;
-  if (offsetParent === documentElement || (topLayer && isFixed)) {
+  if (offsetParent === documentElement || topLayer && isFixed) {
     return rect;
   }
   let scroll = {
     scrollLeft: 0,
-    scrollTop: 0,
+    scrollTop: 0
   };
   let scale = createCoords(1);
   const offsets = createCoords(0);
@@ -189,15 +161,12 @@ function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
       offsets.y = offsetRect.y + offsetParent.clientTop;
     }
   }
-  const htmlOffset =
-    documentElement && !isOffsetParentAnElement && !isFixed
-      ? getHTMLOffset(documentElement, scroll)
-      : createCoords(0);
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
   return {
     width: rect.width * scale.x,
     height: rect.height * scale.y,
     x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x + htmlOffset.x,
-    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y + htmlOffset.y,
+    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y + htmlOffset.y
   };
 }
 function getClientRects(element) {
@@ -217,7 +186,7 @@ function getDocumentRect(html) {
     width,
     height,
     x,
-    y,
+    y
   };
 }
 const SCROLLBAR_MAX = 25;
@@ -254,15 +223,9 @@ function getViewportRect(element, strategy, rootBoundary) {
     const doc = html.ownerDocument;
     const body = doc.body;
     const bodyStyles = getComputedStyle(body);
-    const bodyMarginInline =
-      doc.compatMode === "CSS1Compat"
-        ? parseFloat(bodyStyles.marginLeft) + parseFloat(bodyStyles.marginRight) || 0
-        : 0;
+    const bodyMarginInline = doc.compatMode === "CSS1Compat" ? parseFloat(bodyStyles.marginLeft) + parseFloat(bodyStyles.marginRight) || 0 : 0;
     const reservedWidth = Math.abs(html.clientWidth - body.clientWidth - bodyMarginInline);
-    const gutter =
-      getComputedStyle(html).scrollbarGutter === "stable both-edges"
-        ? reservedWidth / 2
-        : reservedWidth;
+    const gutter = getComputedStyle(html).scrollbarGutter === "stable both-edges" ? reservedWidth / 2 : reservedWidth;
     if (gutter <= SCROLLBAR_MAX) {
       width -= gutter;
     }
@@ -271,7 +234,7 @@ function getViewportRect(element, strategy, rootBoundary) {
     width,
     height,
     x,
-    y,
+    y
   };
 }
 function getInnerBoundingClientRect(element, strategy) {
@@ -287,7 +250,7 @@ function getInnerBoundingClientRect(element, strategy) {
     width,
     height,
     x,
-    y,
+    y
   };
 }
 function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) {
@@ -304,7 +267,7 @@ function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) 
       x: clippingAncestor.x - visualOffsets.x,
       y: clippingAncestor.y - visualOffsets.y,
       width: clippingAncestor.width,
-      height: clippingAncestor.height,
+      height: clippingAncestor.height
     };
   }
   return rectToClientRect(rect);
@@ -314,24 +277,15 @@ function getClippingElementAncestors(element, cache) {
   if (cachedResult) {
     return cachedResult;
   }
-  let result = getOverflowAncestors(element, [], false).filter(
-    (el) => isElement(el) && getNodeName(el) !== "body",
-  );
+  let result = getOverflowAncestors(element, [], false).filter((el) => isElement(el) && getNodeName(el) !== "body");
   let lastKeptComputedStyle = null;
   const elementIsFixed = getComputedStyle$1(element).position === "fixed";
   let currentNode = elementIsFixed ? getParentNode(element) : element;
   while (isElement(currentNode) && !isLastTraversableNode(currentNode)) {
     const computedStyle = getComputedStyle$1(currentNode);
     const currentNodeIsContaining = isContainingBlock(currentNode);
-    const lastPosition = lastKeptComputedStyle
-      ? lastKeptComputedStyle.position
-      : elementIsFixed
-        ? "fixed"
-        : "";
-    const shouldDropCurrentNode =
-      !currentNodeIsContaining &&
-      (lastPosition === "fixed" ||
-        (lastPosition === "absolute" && computedStyle.position === "static"));
+    const lastPosition = lastKeptComputedStyle ? lastKeptComputedStyle.position : elementIsFixed ? "fixed" : "";
+    const shouldDropCurrentNode = !currentNodeIsContaining && (lastPosition === "fixed" || lastPosition === "absolute" && computedStyle.position === "static");
     if (shouldDropCurrentNode) {
       result = result.filter((ancestor) => ancestor !== currentNode);
     } else {
@@ -343,13 +297,13 @@ function getClippingElementAncestors(element, cache) {
   return result;
 }
 function getClippingRect(_ref) {
-  let { element, boundary, rootBoundary, strategy } = _ref;
-  const elementClippingAncestors =
-    boundary === "clippingAncestors"
-      ? isTopLayer(element)
-        ? []
-        : getClippingElementAncestors(element, this._c)
-      : [].concat(boundary);
+  let {
+    element,
+    boundary,
+    rootBoundary,
+    strategy
+  } = _ref;
+  const elementClippingAncestors = boundary === "clippingAncestors" ? isTopLayer(element) ? [] : getClippingElementAncestors(element, this._c) : [].concat(boundary);
   const clippingAncestors = [...elementClippingAncestors, rootBoundary];
   const firstRect = getClientRectFromClippingAncestor(element, clippingAncestors[0], strategy);
   let top = firstRect.top;
@@ -367,14 +321,17 @@ function getClippingRect(_ref) {
     width: right - left,
     height: bottom - top,
     x: left,
-    y: top,
+    y: top
   };
 }
 function getDimensions(element) {
-  const { width, height } = getCssDimensions(element);
+  const {
+    width,
+    height
+  } = getCssDimensions(element);
   return {
     width,
-    height,
+    height
   };
 }
 function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
@@ -384,7 +341,7 @@ function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
   const rect = getBoundingClientRect(element, true, isFixed, offsetParent);
   let scroll = {
     scrollLeft: 0,
-    scrollTop: 0,
+    scrollTop: 0
   };
   const offsets = createCoords(0);
   if (isOffsetParentAnElement || !isFixed) {
@@ -400,17 +357,14 @@ function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
   if (!isOffsetParentAnElement && documentElement) {
     offsets.x = getWindowScrollBarX(documentElement);
   }
-  const htmlOffset =
-    documentElement && !isOffsetParentAnElement && !isFixed
-      ? getHTMLOffset(documentElement, scroll)
-      : createCoords(0);
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
   const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
   const y = rect.top + scroll.scrollTop - offsets.y - htmlOffset.y;
   return {
     x,
     y,
     width: rect.width,
-    height: rect.height,
+    height: rect.height
   };
 }
 function isStaticPositioned(element) {
@@ -448,32 +402,23 @@ function getOffsetParent(element, polyfill) {
   while (offsetParent && isTableElement(offsetParent) && isStaticPositioned(offsetParent)) {
     offsetParent = getTrueOffsetParent(offsetParent, polyfill);
   }
-  if (
-    offsetParent &&
-    isLastTraversableNode(offsetParent) &&
-    isStaticPositioned(offsetParent) &&
-    !isContainingBlock(offsetParent)
-  ) {
+  if (offsetParent && isLastTraversableNode(offsetParent) && isStaticPositioned(offsetParent) && !isContainingBlock(offsetParent)) {
     return win;
   }
   return offsetParent || getContainingBlock(element) || win;
 }
-const getElementRects = async function (data) {
+const getElementRects = async function(data) {
   const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
   const getDimensionsFn = this.getDimensions;
   const floatingDimensions = await getDimensionsFn(data.floating);
   return {
-    reference: getRectRelativeToOffsetParent(
-      data.reference,
-      await getOffsetParentFn(data.floating),
-      data.strategy,
-    ),
+    reference: getRectRelativeToOffsetParent(data.reference, await getOffsetParentFn(data.floating), data.strategy),
     floating: {
       x: 0,
       y: 0,
       width: floatingDimensions.width,
-      height: floatingDimensions.height,
-    },
+      height: floatingDimensions.height
+    }
   };
 };
 function isRTL(element) {
@@ -489,7 +434,7 @@ const platform = {
   getDimensions,
   getScale,
   isElement,
-  isRTL,
+  isRTL
 };
 function rectsAreEqual(a, b) {
   return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
@@ -513,7 +458,12 @@ function observeMove(element, onMove, ancestorResize) {
     }
     cleanup();
     const elementRectForRootMargin = element.getBoundingClientRect();
-    const { left, top, width, height } = elementRectForRootMargin;
+    const {
+      left,
+      top,
+      width,
+      height
+    } = elementRectForRootMargin;
     if (!skip) {
       onMove();
     }
@@ -524,11 +474,10 @@ function observeMove(element, onMove, ancestorResize) {
     const insetRight = floor(root.clientWidth - (left + width));
     const insetBottom = floor(root.clientHeight - (top + height));
     const insetLeft = floor(left);
-    const rootMargin =
-      -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
+    const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
     const options = {
       rootMargin,
-      threshold: max(0, min(1, threshold)) || 1,
+      threshold: max(0, min(1, threshold)) || 1
     };
     let isFirstUpdate = true;
     function handleObserve(entries) {
@@ -554,7 +503,7 @@ function observeMove(element, onMove, ancestorResize) {
       io = new IntersectionObserver(handleObserve, {
         ...options,
         // Handle <iframe>s
-        root: root.ownerDocument,
+        root: root.ownerDocument
       });
     } catch (_e) {
       io = new IntersectionObserver(handleObserve, options);
@@ -579,22 +528,15 @@ function autoUpdate(reference, floating, update, options) {
     ancestorResize = true,
     elementResize = typeof ResizeObserver === "function",
     layoutShift = typeof IntersectionObserver === "function",
-    animationFrame = false,
+    animationFrame = false
   } = options;
   const referenceEl = unwrapElement(reference);
-  const ancestors =
-    ancestorScroll || ancestorResize
-      ? [
-          ...(referenceEl ? getOverflowAncestors(referenceEl) : []),
-          ...(floating ? getOverflowAncestors(floating) : []),
-        ]
-      : [];
+  const ancestors = ancestorScroll || ancestorResize ? [...referenceEl ? getOverflowAncestors(referenceEl) : [], ...floating ? getOverflowAncestors(floating) : []] : [];
   ancestors.forEach((ancestor) => {
     ancestorScroll && ancestor.addEventListener("scroll", update);
     ancestorResize && ancestor.addEventListener("resize", update);
   });
-  const cleanupIo =
-    referenceEl && layoutShift ? observeMove(referenceEl, update, ancestorResize) : null;
+  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update, ancestorResize) : null;
   let reobserveFrame = -1;
   let resizeObserver = null;
   if (elementResize) {
@@ -658,11 +600,11 @@ const computePosition = (reference, floating, options) => {
   const platformWithCache = {
     ...platform,
     ...mergedOptions.platform,
-    _c: cache,
+    _c: cache
   };
   return computePosition$1(reference, floating, {
     ...mergedOptions,
-    platform: platformWithCache,
+    platform: platformWithCache
   });
 };
 export {
@@ -674,5 +616,5 @@ export {
   hide as h,
   limitShift as l,
   offset as o,
-  shift as s,
+  shift as s
 };

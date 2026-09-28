@@ -1,4 +1,4 @@
-import { R as React } from "./react.mjs";
+import { R as React__default } from "./react.mjs";
 import { a as ReactDOM } from "./react-dom.mjs";
 function __insertCSS(code) {
   if (typeof document == "undefined") return;
@@ -24,68 +24,68 @@ const getAsset = (type) => {
 };
 const bars = Array(12).fill(0);
 const Loader = ({ visible, className }) => {
-  return /* @__PURE__ */ React.createElement("div", {
+  return /* @__PURE__ */ React__default.createElement("div", {
     className: [
       "sonner-loading-wrapper",
       className
     ].filter(Boolean).join(" "),
     "data-visible": visible
-  }, /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React__default.createElement("div", {
     className: "sonner-spinner"
-  }, bars.map((_, i) => /* @__PURE__ */ React.createElement("div", {
+  }, bars.map((_, i) => /* @__PURE__ */ React__default.createElement("div", {
     className: "sonner-loading-bar",
     key: `spinner-bar-${i}`
   }))));
 };
-const SuccessIcon = /* @__PURE__ */ React.createElement("svg", {
+const SuccessIcon = /* @__PURE__ */ React__default.createElement("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 20 20",
   fill: "currentColor",
   height: "20",
   width: "20",
   "aria-hidden": "true"
-}, /* @__PURE__ */ React.createElement("path", {
+}, /* @__PURE__ */ React__default.createElement("path", {
   fillRule: "evenodd",
   d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z",
   clipRule: "evenodd"
 }));
-const WarningIcon = /* @__PURE__ */ React.createElement("svg", {
+const WarningIcon = /* @__PURE__ */ React__default.createElement("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
   fill: "currentColor",
   height: "20",
   width: "20",
   "aria-hidden": "true"
-}, /* @__PURE__ */ React.createElement("path", {
+}, /* @__PURE__ */ React__default.createElement("path", {
   fillRule: "evenodd",
   d: "M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z",
   clipRule: "evenodd"
 }));
-const InfoIcon = /* @__PURE__ */ React.createElement("svg", {
+const InfoIcon = /* @__PURE__ */ React__default.createElement("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 20 20",
   fill: "currentColor",
   height: "20",
   width: "20",
   "aria-hidden": "true"
-}, /* @__PURE__ */ React.createElement("path", {
+}, /* @__PURE__ */ React__default.createElement("path", {
   fillRule: "evenodd",
   d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z",
   clipRule: "evenodd"
 }));
-const ErrorIcon = /* @__PURE__ */ React.createElement("svg", {
+const ErrorIcon = /* @__PURE__ */ React__default.createElement("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 20 20",
   fill: "currentColor",
   height: "20",
   width: "20",
   "aria-hidden": "true"
-}, /* @__PURE__ */ React.createElement("path", {
+}, /* @__PURE__ */ React__default.createElement("path", {
   fillRule: "evenodd",
   d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z",
   clipRule: "evenodd"
 }));
-const CloseIcon = /* @__PURE__ */ React.createElement("svg", {
+const CloseIcon = /* @__PURE__ */ React__default.createElement("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   width: "12",
   height: "12",
@@ -96,20 +96,20 @@ const CloseIcon = /* @__PURE__ */ React.createElement("svg", {
   strokeLinecap: "round",
   strokeLinejoin: "round",
   "aria-hidden": "true"
-}, /* @__PURE__ */ React.createElement("line", {
+}, /* @__PURE__ */ React__default.createElement("line", {
   x1: "18",
   y1: "6",
   x2: "6",
   y2: "18"
-}), /* @__PURE__ */ React.createElement("line", {
+}), /* @__PURE__ */ React__default.createElement("line", {
   x1: "6",
   y1: "6",
   x2: "18",
   y2: "18"
 }));
 const useIsDocumentHidden = () => {
-  const [isDocumentHidden, setIsDocumentHidden] = React.useState(document.hidden);
-  React.useEffect(() => {
+  const [isDocumentHidden, setIsDocumentHidden] = React__default.useState(document.hidden);
+  React__default.useEffect(() => {
     const callback = () => {
       setIsDocumentHidden(document.hidden);
     };
@@ -128,7 +128,7 @@ class Observer {
   constructor() {
     this.subscribe = (subscriber) => {
       this.subscribers.push(subscriber);
-      this.getActiveToasts().forEach((toast) => subscriber(toast));
+      this.getActiveToasts().forEach((toast2) => subscriber(toast2));
       return () => {
         const index = this.subscribers.indexOf(subscriber);
         this.subscribers.splice(index, 1);
@@ -148,9 +148,9 @@ class Observer {
     this.trimHistory = () => {
       let toRemove = this.toasts.length - MAX_HISTORY_SIZE;
       if (toRemove <= 0) return;
-      this.toasts = this.toasts.filter((toast) => {
-        if (toRemove > 0 && this.dismissedToasts.has(toast.id)) {
-          this.dismissedToasts.delete(toast.id);
+      this.toasts = this.toasts.filter((toast2) => {
+        if (toRemove > 0 && this.dismissedToasts.has(toast2.id)) {
+          this.dismissedToasts.delete(toast2.id);
           toRemove--;
           return false;
         }
@@ -170,29 +170,29 @@ class Observer {
       const dismissible = data.dismissible === void 0 ? true : data.dismissible;
       if (wasDismissed) {
         this.dismissedToasts.delete(id);
-        this.toasts = this.toasts.filter((toast) => toast.id !== id);
+        this.toasts = this.toasts.filter((toast2) => toast2.id !== id);
       }
-      const alreadyExists = wasDismissed ? void 0 : this.toasts.find((toast) => {
-        return toast.id === id;
+      const alreadyExists = wasDismissed ? void 0 : this.toasts.find((toast2) => {
+        return toast2.id === id;
       });
       if (alreadyExists) {
-        this.toasts = this.toasts.map((toast) => {
-          if (toast.id === id) {
+        this.toasts = this.toasts.map((toast2) => {
+          if (toast2.id === id) {
             this.publish({
-              ...toast,
+              ...toast2,
               ...data,
               id,
               title: message
             });
             return {
-              ...toast,
+              ...toast2,
               ...data,
               id,
               dismissible,
               title: message
             };
           }
-          return toast;
+          return toast2;
         });
       } else {
         this.addToast({
@@ -206,10 +206,10 @@ class Observer {
     };
     this.dismiss = (id) => {
       if (id === void 0 || id === null) {
-        this.getActiveToasts().forEach((toast) => {
-          this.dismissedToasts.add(toast.id);
+        this.getActiveToasts().forEach((toast2) => {
+          this.dismissedToasts.add(toast2.id);
           this.subscribers.forEach((subscriber) => subscriber({
-            id: toast.id,
+            id: toast2.id,
             dismiss: true
           }));
         });
@@ -293,7 +293,7 @@ class Observer {
           "resolve",
           response
         ];
-        const isReactElementResponse = React.isValidElement(response);
+        const isReactElementResponse = React__default.isValidElement(response);
         if (isReactElementResponse) {
           shouldDismiss = false;
           this.create({
@@ -305,7 +305,7 @@ class Observer {
           shouldDismiss = false;
           const promiseData = typeof data.error === "function" ? await data.error(`HTTP error! status: ${response.status}`) : data.error;
           const description = typeof data.description === "function" ? await data.description(`HTTP error! status: ${response.status}`) : data.description;
-          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const isExtendedResult = typeof promiseData === "object" && !React__default.isValidElement(promiseData);
           const toastSettings = isExtendedResult ? promiseData : {
             message: promiseData
           };
@@ -319,7 +319,7 @@ class Observer {
           shouldDismiss = false;
           const promiseData = typeof data.error === "function" ? await data.error(response) : data.error;
           const description = typeof data.description === "function" ? await data.description(response) : data.description;
-          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const isExtendedResult = typeof promiseData === "object" && !React__default.isValidElement(promiseData);
           const toastSettings = isExtendedResult ? promiseData : {
             message: promiseData
           };
@@ -333,7 +333,7 @@ class Observer {
           shouldDismiss = false;
           const promiseData = typeof data.success === "function" ? await data.success(response) : data.success;
           const description = typeof data.description === "function" ? await data.description(response) : data.description;
-          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const isExtendedResult = typeof promiseData === "object" && !React__default.isValidElement(promiseData);
           const toastSettings = isExtendedResult ? promiseData : {
             message: promiseData
           };
@@ -353,7 +353,7 @@ class Observer {
           shouldDismiss = false;
           const promiseData = typeof data.error === "function" ? await data.error(error) : data.error;
           const description = typeof data.description === "function" ? await data.description(error) : data.description;
-          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const isExtendedResult = typeof promiseData === "object" && !React__default.isValidElement(promiseData);
           const toastSettings = isExtendedResult ? promiseData : {
             message: promiseData
           };
@@ -393,7 +393,7 @@ class Observer {
       return id;
     };
     this.getActiveToasts = () => {
-      return this.toasts.filter((toast) => !this.dismissedToasts.has(toast.id));
+      return this.toasts.filter((toast2) => !this.dismissedToasts.has(toast2.id));
     };
     this.subscribers = [];
     this.toasts = [];
@@ -411,7 +411,7 @@ const isHttpResponse = (data) => {
 const basicToast = toastFunction;
 const getHistory = () => ToastState.toasts;
 const getToasts = () => ToastState.getActiveToasts();
-Object.assign(basicToast, {
+const toast = Object.assign(basicToast, {
   success: ToastState.success,
   info: ToastState.info,
   warning: ToastState.warning,
@@ -453,47 +453,47 @@ function getDefaultSwipeDirections(position) {
 }
 const Toast = (props) => {
   var _toast_classNames, _toast_classNames1, _toast_classNames2, _toast_classNames3, _toast_classNames4, _toast_classNames5, _toast_classNames6, _toast_classNames7, _toast_classNames8;
-  const { invert: ToasterInvert, toast, unstyled, interacting, setHeights, visibleToasts, heights, index, toasts, expanded, removeToast, defaultRichColors, closeButton: closeButtonFromToaster, style, cancelButtonStyle, actionButtonStyle, className = "", descriptionClassName = "", duration: durationFromToaster, position, gap, expandByDefault, classNames, icons, closeButtonAriaLabel = "Close toast" } = props;
-  const [swipeDirection, setSwipeDirection] = React.useState(null);
-  const [swipeOutDirection, setSwipeOutDirection] = React.useState(null);
-  const [mounted, setMounted] = React.useState(false);
-  const [removed, setRemoved] = React.useState(false);
-  const [swiping, setSwiping] = React.useState(false);
-  const [swipeOut, setSwipeOut] = React.useState(false);
-  const [isSwiped, setIsSwiped] = React.useState(false);
-  const [offsetBeforeRemove, setOffsetBeforeRemove] = React.useState(0);
-  const [initialHeight, setInitialHeight] = React.useState(0);
-  const remainingTime = React.useRef(toast.duration || durationFromToaster || TOAST_LIFETIME);
-  const dragStartTime = React.useRef(null);
-  const toastRef = React.useRef(null);
+  const { invert: ToasterInvert, toast: toast2, unstyled, interacting, setHeights, visibleToasts, heights, index, toasts, expanded, removeToast, defaultRichColors, closeButton: closeButtonFromToaster, style, cancelButtonStyle, actionButtonStyle, className = "", descriptionClassName = "", duration: durationFromToaster, position, gap, expandByDefault, classNames, icons, closeButtonAriaLabel = "Close toast" } = props;
+  const [swipeDirection, setSwipeDirection] = React__default.useState(null);
+  const [swipeOutDirection, setSwipeOutDirection] = React__default.useState(null);
+  const [mounted, setMounted] = React__default.useState(false);
+  const [removed, setRemoved] = React__default.useState(false);
+  const [swiping, setSwiping] = React__default.useState(false);
+  const [swipeOut, setSwipeOut] = React__default.useState(false);
+  const [isSwiped, setIsSwiped] = React__default.useState(false);
+  const [offsetBeforeRemove, setOffsetBeforeRemove] = React__default.useState(0);
+  const [initialHeight, setInitialHeight] = React__default.useState(0);
+  const remainingTime = React__default.useRef(toast2.duration || durationFromToaster || TOAST_LIFETIME);
+  const dragStartTime = React__default.useRef(null);
+  const toastRef = React__default.useRef(null);
   const isFront = index === 0;
   const isVisible = index + 1 <= visibleToasts;
-  const toastType = toast.type;
+  const toastType = toast2.type;
   const toastTypeKey = toastType != null ? toastType : "default";
-  const dismissible = toast.dismissible !== false;
-  const toastClassname = toast.className || "";
-  const toastDescriptionClassname = toast.descriptionClassName || "";
-  const heightIndex = React.useMemo(() => heights.findIndex((height) => height.toastId === toast.id) || 0, [
+  const dismissible = toast2.dismissible !== false;
+  const toastClassname = toast2.className || "";
+  const toastDescriptionClassname = toast2.descriptionClassName || "";
+  const heightIndex = React__default.useMemo(() => heights.findIndex((height) => height.toastId === toast2.id) || 0, [
     heights,
-    toast.id
+    toast2.id
   ]);
-  const closeButton = React.useMemo(() => {
+  const closeButton = React__default.useMemo(() => {
     var _toast_closeButton;
-    return (_toast_closeButton = toast.closeButton) != null ? _toast_closeButton : closeButtonFromToaster;
+    return (_toast_closeButton = toast2.closeButton) != null ? _toast_closeButton : closeButtonFromToaster;
   }, [
-    toast.closeButton,
+    toast2.closeButton,
     closeButtonFromToaster
   ]);
-  const duration = React.useMemo(() => toast.duration || durationFromToaster || TOAST_LIFETIME, [
-    toast.duration,
+  const duration = React__default.useMemo(() => toast2.duration || durationFromToaster || TOAST_LIFETIME, [
+    toast2.duration,
     durationFromToaster
   ]);
-  const closeTimerStartTimeRef = React.useRef(0);
-  const offset = React.useRef(0);
-  const lastCloseTimerStartTimeRef = React.useRef(0);
-  const pointerStartRef = React.useRef(null);
+  const closeTimerStartTimeRef = React__default.useRef(0);
+  const offset = React__default.useRef(0);
+  const lastCloseTimerStartTimeRef = React__default.useRef(0);
+  const pointerStartRef = React__default.useRef(null);
   const [y, x] = position.split("-");
-  const toastsHeightBefore = React.useMemo(() => {
+  const toastsHeightBefore = React__default.useMemo(() => {
     return heights.reduce((prev, curr, reducerIndex) => {
       if (reducerIndex >= heightIndex) {
         return prev;
@@ -505,47 +505,47 @@ const Toast = (props) => {
     heightIndex
   ]);
   const isDocumentHidden = useIsDocumentHidden();
-  const swipeDirections = React.useMemo(() => {
+  const swipeDirections = React__default.useMemo(() => {
     var _props_swipeDirections;
     return (_props_swipeDirections = props.swipeDirections) != null ? _props_swipeDirections : getDefaultSwipeDirections(position);
   }, [
     props.swipeDirections,
     position
   ]);
-  const invert = toast.invert || ToasterInvert;
+  const invert = toast2.invert || ToasterInvert;
   const disabled = toastType === "loading";
-  offset.current = React.useMemo(() => heightIndex * gap + toastsHeightBefore, [
+  offset.current = React__default.useMemo(() => heightIndex * gap + toastsHeightBefore, [
     heightIndex,
     toastsHeightBefore
   ]);
-  React.useEffect(() => {
+  React__default.useEffect(() => {
     remainingTime.current = duration;
   }, [
     duration
   ]);
-  React.useEffect(() => {
+  React__default.useEffect(() => {
     setMounted(true);
   }, []);
-  React.useEffect(() => {
+  React__default.useEffect(() => {
     const toastNode = toastRef.current;
     if (toastNode) {
       const height = toastNode.getBoundingClientRect().height;
       setInitialHeight(height);
       setHeights((h) => [
         {
-          toastId: toast.id,
+          toastId: toast2.id,
           height,
-          position: toast.position
+          position: toast2.position
         },
         ...h
       ]);
-      return () => setHeights((h) => h.filter((height2) => height2.toastId !== toast.id));
+      return () => setHeights((h) => h.filter((height2) => height2.toastId !== toast2.id));
     }
   }, [
     setHeights,
-    toast.id
+    toast2.id
   ]);
-  React.useLayoutEffect(() => {
+  React__default.useLayoutEffect(() => {
     if (!mounted) return;
     const toastNode = toastRef.current;
     const originalHeight = toastNode.style.height;
@@ -554,18 +554,18 @@ const Toast = (props) => {
     toastNode.style.height = originalHeight;
     setInitialHeight(newHeight);
     setHeights((heights2) => {
-      const alreadyExists = heights2.find((height) => height.toastId === toast.id);
+      const alreadyExists = heights2.find((height) => height.toastId === toast2.id);
       if (!alreadyExists) {
         return [
           {
-            toastId: toast.id,
+            toastId: toast2.id,
             height: newHeight,
-            position: toast.position
+            position: toast2.position
           },
           ...heights2
         ];
       } else {
-        return heights2.map((height) => height.toastId === toast.id ? {
+        return heights2.map((height) => height.toastId === toast2.id ? {
           ...height,
           height: newHeight
         } : height);
@@ -573,29 +573,29 @@ const Toast = (props) => {
     });
   }, [
     mounted,
-    toast.title,
-    toast.description,
+    toast2.title,
+    toast2.description,
     setHeights,
-    toast.id,
-    toast.jsx,
-    toast.action,
-    toast.cancel
+    toast2.id,
+    toast2.jsx,
+    toast2.action,
+    toast2.cancel
   ]);
-  const deleteToast = React.useCallback(() => {
+  const deleteToast = React__default.useCallback(() => {
     setRemoved(true);
     setOffsetBeforeRemove(offset.current);
-    setHeights((h) => h.filter((height) => height.toastId !== toast.id));
+    setHeights((h) => h.filter((height) => height.toastId !== toast2.id));
     setTimeout(() => {
-      removeToast(toast);
+      removeToast(toast2);
     }, TIME_BEFORE_UNMOUNT);
   }, [
-    toast,
+    toast2,
     removeToast,
     setHeights,
     offset
   ]);
-  React.useEffect(() => {
-    if (toast.promise && toastType === "loading" || toast.duration === Infinity || toast.type === "loading") return;
+  React__default.useEffect(() => {
+    if (toast2.promise && toastType === "loading" || toast2.duration === Infinity || toast2.type === "loading") return;
     let timeoutId;
     const pauseTimer = () => {
       if (lastCloseTimerStartTimeRef.current < closeTimerStartTimeRef.current) {
@@ -608,7 +608,7 @@ const Toast = (props) => {
       if (remainingTime.current === Infinity) return;
       closeTimerStartTimeRef.current = (/* @__PURE__ */ new Date()).getTime();
       timeoutId = setTimeout(() => {
-        toast.onAutoClose == null ? void 0 : toast.onAutoClose.call(toast, toast);
+        toast2.onAutoClose == null ? void 0 : toast2.onAutoClose.call(toast2, toast2);
         deleteToast();
       }, remainingTime.current);
     };
@@ -621,45 +621,45 @@ const Toast = (props) => {
   }, [
     expanded,
     interacting,
-    toast,
+    toast2,
     toastType,
     isDocumentHidden,
     deleteToast
   ]);
-  React.useEffect(() => {
-    if (toast.delete) {
+  React__default.useEffect(() => {
+    if (toast2.delete) {
       deleteToast();
-      toast.onDismiss == null ? void 0 : toast.onDismiss.call(toast, toast);
+      toast2.onDismiss == null ? void 0 : toast2.onDismiss.call(toast2, toast2);
     }
   }, [
     deleteToast,
-    toast.delete
+    toast2.delete
   ]);
   function getLoadingIcon() {
     var _toast_classNames9;
     if (icons == null ? void 0 : icons.loading) {
       var _toast_classNames12;
-      return /* @__PURE__ */ React.createElement("div", {
-        className: cn(classNames == null ? void 0 : classNames.loader, toast == null ? void 0 : (_toast_classNames12 = toast.classNames) == null ? void 0 : _toast_classNames12.loader, "sonner-loader"),
+      return /* @__PURE__ */ React__default.createElement("div", {
+        className: cn(classNames == null ? void 0 : classNames.loader, toast2 == null ? void 0 : (_toast_classNames12 = toast2.classNames) == null ? void 0 : _toast_classNames12.loader, "sonner-loader"),
         "data-visible": toastType === "loading"
       }, icons.loading);
     }
-    return /* @__PURE__ */ React.createElement(Loader, {
-      className: cn(classNames == null ? void 0 : classNames.loader, toast == null ? void 0 : (_toast_classNames9 = toast.classNames) == null ? void 0 : _toast_classNames9.loader),
+    return /* @__PURE__ */ React__default.createElement(Loader, {
+      className: cn(classNames == null ? void 0 : classNames.loader, toast2 == null ? void 0 : (_toast_classNames9 = toast2.classNames) == null ? void 0 : _toast_classNames9.loader),
       visible: toastType === "loading"
     });
   }
-  const icon = toast.icon || (icons == null ? void 0 : icons[toastType]) || getAsset(toastType);
+  const icon = toast2.icon || (icons == null ? void 0 : icons[toastType]) || getAsset(toastType);
   var _toast_richColors, _icons_close;
-  return /* @__PURE__ */ React.createElement("li", {
+  return /* @__PURE__ */ React__default.createElement("li", {
     tabIndex: 0,
     ref: toastRef,
-    className: cn(className, toastClassname, classNames == null ? void 0 : classNames.toast, toast == null ? void 0 : (_toast_classNames = toast.classNames) == null ? void 0 : _toast_classNames.toast, classNames == null ? void 0 : classNames[toastTypeKey], toast == null ? void 0 : (_toast_classNames1 = toast.classNames) == null ? void 0 : _toast_classNames1[toastTypeKey]),
+    className: cn(className, toastClassname, classNames == null ? void 0 : classNames.toast, toast2 == null ? void 0 : (_toast_classNames = toast2.classNames) == null ? void 0 : _toast_classNames.toast, classNames == null ? void 0 : classNames[toastTypeKey], toast2 == null ? void 0 : (_toast_classNames1 = toast2.classNames) == null ? void 0 : _toast_classNames1[toastTypeKey]),
     "data-sonner-toast": "",
-    "data-rich-colors": (_toast_richColors = toast.richColors) != null ? _toast_richColors : defaultRichColors,
-    "data-styled": !Boolean(toast.jsx || toast.unstyled || unstyled),
+    "data-rich-colors": (_toast_richColors = toast2.richColors) != null ? _toast_richColors : defaultRichColors,
+    "data-styled": !Boolean(toast2.jsx || toast2.unstyled || unstyled),
     "data-mounted": mounted,
-    "data-promise": Boolean(toast.promise),
+    "data-promise": Boolean(toast2.promise),
     "data-swiped": isSwiped,
     "data-removed": removed,
     "data-visible": isVisible,
@@ -674,7 +674,7 @@ const Toast = (props) => {
     "data-swipe-out": swipeOut,
     "data-swipe-direction": swipeOutDirection,
     "data-expanded": Boolean(expanded || expandByDefault && mounted),
-    "data-testid": toast.testId,
+    "data-testid": toast2.testId,
     style: {
       "--index": index,
       "--toasts-before": index,
@@ -682,7 +682,7 @@ const Toast = (props) => {
       "--offset": `${removed ? offsetBeforeRemove : offset.current}px`,
       "--initial-height": expandByDefault ? "auto" : `${initialHeight}px`,
       ...style,
-      ...toast.style
+      ...toast2.style
     },
     onDragEnd: () => {
       setSwiping(false);
@@ -714,7 +714,7 @@ const Toast = (props) => {
       const isAllowedDirection = swipeDirection === "x" ? swipeDirections.includes(swipeAmountX > 0 ? "right" : "left") : swipeDirections.includes(swipeAmountY > 0 ? "bottom" : "top");
       if (isAllowedDirection && (Math.abs(swipeAmount) >= SWIPE_THRESHOLD || velocity > 0.11)) {
         setOffsetBeforeRemove(offset.current);
-        toast.onDismiss == null ? void 0 : toast.onDismiss.call(toast, toast);
+        toast2.onDismiss == null ? void 0 : toast2.onDismiss.call(toast2, toast2);
         if (swipeDirection === "x") {
           setSwipeOutDirection(swipeAmountX > 0 ? "right" : "left");
         } else {
@@ -775,51 +775,51 @@ const Toast = (props) => {
       (_toastRef_current = toastRef.current) == null ? void 0 : _toastRef_current.style.setProperty("--swipe-amount-x", `${swipeAmount.x}px`);
       (_toastRef_current1 = toastRef.current) == null ? void 0 : _toastRef_current1.style.setProperty("--swipe-amount-y", `${swipeAmount.y}px`);
     }
-  }, closeButton && !toast.jsx && toastType !== "loading" ? /* @__PURE__ */ React.createElement("button", {
+  }, closeButton && !toast2.jsx && toastType !== "loading" ? /* @__PURE__ */ React__default.createElement("button", {
     "aria-label": closeButtonAriaLabel,
     "data-disabled": disabled,
     "data-close-button": true,
     onClick: disabled || !dismissible ? () => {
     } : () => {
       deleteToast();
-      toast.onDismiss == null ? void 0 : toast.onDismiss.call(toast, toast);
+      toast2.onDismiss == null ? void 0 : toast2.onDismiss.call(toast2, toast2);
     },
-    className: cn(classNames == null ? void 0 : classNames.closeButton, toast == null ? void 0 : (_toast_classNames2 = toast.classNames) == null ? void 0 : _toast_classNames2.closeButton)
-  }, (_icons_close = icons == null ? void 0 : icons.close) != null ? _icons_close : CloseIcon) : null, (toastType || toast.icon || toast.promise) && toast.icon !== null && ((icons == null ? void 0 : icons[toastType]) !== null || toast.icon) ? /* @__PURE__ */ React.createElement("div", {
+    className: cn(classNames == null ? void 0 : classNames.closeButton, toast2 == null ? void 0 : (_toast_classNames2 = toast2.classNames) == null ? void 0 : _toast_classNames2.closeButton)
+  }, (_icons_close = icons == null ? void 0 : icons.close) != null ? _icons_close : CloseIcon) : null, (toastType || toast2.icon || toast2.promise) && toast2.icon !== null && ((icons == null ? void 0 : icons[toastType]) !== null || toast2.icon) ? /* @__PURE__ */ React__default.createElement("div", {
     "data-icon": "",
-    className: cn(classNames == null ? void 0 : classNames.icon, toast == null ? void 0 : (_toast_classNames3 = toast.classNames) == null ? void 0 : _toast_classNames3.icon)
-  }, toastType === "loading" ? toast.icon || getLoadingIcon() : toast.promise ? getLoadingIcon() : null, toastType !== "loading" ? icon : null) : null, /* @__PURE__ */ React.createElement("div", {
+    className: cn(classNames == null ? void 0 : classNames.icon, toast2 == null ? void 0 : (_toast_classNames3 = toast2.classNames) == null ? void 0 : _toast_classNames3.icon)
+  }, toastType === "loading" ? toast2.icon || getLoadingIcon() : toast2.promise ? getLoadingIcon() : null, toastType !== "loading" ? icon : null) : null, /* @__PURE__ */ React__default.createElement("div", {
     "data-content": "",
-    className: cn(classNames == null ? void 0 : classNames.content, toast == null ? void 0 : (_toast_classNames4 = toast.classNames) == null ? void 0 : _toast_classNames4.content)
-  }, /* @__PURE__ */ React.createElement("div", {
+    className: cn(classNames == null ? void 0 : classNames.content, toast2 == null ? void 0 : (_toast_classNames4 = toast2.classNames) == null ? void 0 : _toast_classNames4.content)
+  }, /* @__PURE__ */ React__default.createElement("div", {
     "data-title": "",
-    className: cn(classNames == null ? void 0 : classNames.title, toast == null ? void 0 : (_toast_classNames5 = toast.classNames) == null ? void 0 : _toast_classNames5.title)
-  }, toast.jsx ? toast.jsx : typeof toast.title === "function" ? toast.title() : toast.title), toast.description ? /* @__PURE__ */ React.createElement("div", {
+    className: cn(classNames == null ? void 0 : classNames.title, toast2 == null ? void 0 : (_toast_classNames5 = toast2.classNames) == null ? void 0 : _toast_classNames5.title)
+  }, toast2.jsx ? toast2.jsx : typeof toast2.title === "function" ? toast2.title() : toast2.title), toast2.description ? /* @__PURE__ */ React__default.createElement("div", {
     "data-description": "",
-    className: cn(descriptionClassName, toastDescriptionClassname, classNames == null ? void 0 : classNames.description, toast == null ? void 0 : (_toast_classNames6 = toast.classNames) == null ? void 0 : _toast_classNames6.description)
-  }, typeof toast.description === "function" ? toast.description() : toast.description) : null), /* @__PURE__ */ React.isValidElement(toast.cancel) ? toast.cancel : toast.cancel && isAction(toast.cancel) ? /* @__PURE__ */ React.createElement("button", {
+    className: cn(descriptionClassName, toastDescriptionClassname, classNames == null ? void 0 : classNames.description, toast2 == null ? void 0 : (_toast_classNames6 = toast2.classNames) == null ? void 0 : _toast_classNames6.description)
+  }, typeof toast2.description === "function" ? toast2.description() : toast2.description) : null), /* @__PURE__ */ React__default.isValidElement(toast2.cancel) ? toast2.cancel : toast2.cancel && isAction(toast2.cancel) ? /* @__PURE__ */ React__default.createElement("button", {
     "data-button": true,
     "data-cancel": true,
-    style: toast.cancelButtonStyle || cancelButtonStyle,
+    style: toast2.cancelButtonStyle || cancelButtonStyle,
     onClick: (event) => {
-      if (!isAction(toast.cancel)) return;
+      if (!isAction(toast2.cancel)) return;
       if (!dismissible) return;
-      toast.cancel.onClick == null ? void 0 : toast.cancel.onClick.call(toast.cancel, event);
+      toast2.cancel.onClick == null ? void 0 : toast2.cancel.onClick.call(toast2.cancel, event);
       deleteToast();
     },
-    className: cn(classNames == null ? void 0 : classNames.cancelButton, toast == null ? void 0 : (_toast_classNames7 = toast.classNames) == null ? void 0 : _toast_classNames7.cancelButton)
-  }, toast.cancel.label) : null, /* @__PURE__ */ React.isValidElement(toast.action) ? toast.action : toast.action && isAction(toast.action) ? /* @__PURE__ */ React.createElement("button", {
+    className: cn(classNames == null ? void 0 : classNames.cancelButton, toast2 == null ? void 0 : (_toast_classNames7 = toast2.classNames) == null ? void 0 : _toast_classNames7.cancelButton)
+  }, toast2.cancel.label) : null, /* @__PURE__ */ React__default.isValidElement(toast2.action) ? toast2.action : toast2.action && isAction(toast2.action) ? /* @__PURE__ */ React__default.createElement("button", {
     "data-button": true,
     "data-action": true,
-    style: toast.actionButtonStyle || actionButtonStyle,
+    style: toast2.actionButtonStyle || actionButtonStyle,
     onClick: (event) => {
-      if (!isAction(toast.action)) return;
-      toast.action.onClick == null ? void 0 : toast.action.onClick.call(toast.action, event);
+      if (!isAction(toast2.action)) return;
+      toast2.action.onClick == null ? void 0 : toast2.action.onClick.call(toast2.action, event);
       if (event.defaultPrevented) return;
       deleteToast();
     },
-    className: cn(classNames == null ? void 0 : classNames.actionButton, toast == null ? void 0 : (_toast_classNames8 = toast.classNames) == null ? void 0 : _toast_classNames8.actionButton)
-  }, toast.action.label) : null);
+    className: cn(classNames == null ? void 0 : classNames.actionButton, toast2 == null ? void 0 : (_toast_classNames8 = toast2.classNames) == null ? void 0 : _toast_classNames8.actionButton)
+  }, toast2.action.label) : null);
 };
 function getDocumentDirection() {
   if (typeof window === "undefined") return "ltr";
@@ -870,51 +870,51 @@ function assignOffset(defaultOffset, mobileOffset) {
   });
   return styles;
 }
-const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
+const Toaster = /* @__PURE__ */ React__default.forwardRef(function Toaster2(props, ref) {
   const { id, invert, position = "bottom-right", hotkey = [
     "altKey",
     "KeyT"
   ], expand, closeButton, className, offset, mobileOffset, theme = "light", richColors, duration, style, visibleToasts = VISIBLE_TOASTS_AMOUNT, toastOptions, dir = getDocumentDirection(), gap = GAP, icons, customAriaLabel, containerAriaLabel = "Notifications" } = props;
-  const [toasts, setToasts] = React.useState([]);
-  const filteredToasts = React.useMemo(() => {
+  const [toasts, setToasts] = React__default.useState([]);
+  const filteredToasts = React__default.useMemo(() => {
     if (id) {
-      return toasts.filter((toast) => toast.toasterId === id);
+      return toasts.filter((toast2) => toast2.toasterId === id);
     }
-    return toasts.filter((toast) => !toast.toasterId);
+    return toasts.filter((toast2) => !toast2.toasterId);
   }, [
     toasts,
     id
   ]);
-  const possiblePositions = React.useMemo(() => {
+  const possiblePositions = React__default.useMemo(() => {
     return Array.from(new Set([
       position
-    ].concat(filteredToasts.filter((toast) => toast.position).map((toast) => toast.position))));
+    ].concat(filteredToasts.filter((toast2) => toast2.position).map((toast2) => toast2.position))));
   }, [
     filteredToasts,
     position
   ]);
-  const [heights, setHeights] = React.useState([]);
-  const [expanded, setExpanded] = React.useState(false);
-  const [interacting, setInteracting] = React.useState(false);
-  const [actualTheme, setActualTheme] = React.useState(theme !== "system" ? theme : typeof window !== "undefined" ? window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light" : "light");
-  const listRef = React.useRef(null);
+  const [heights, setHeights] = React__default.useState([]);
+  const [expanded, setExpanded] = React__default.useState(false);
+  const [interacting, setInteracting] = React__default.useState(false);
+  const [actualTheme, setActualTheme] = React__default.useState(theme !== "system" ? theme : typeof window !== "undefined" ? window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light" : "light");
+  const listRef = React__default.useRef(null);
   const hotkeyLabel = hotkey.join("+").replace(/Key/g, "").replace(/Digit/g, "");
-  const lastFocusedElementRef = React.useRef(null);
-  const isFocusWithinRef = React.useRef(false);
-  const removeToast = React.useCallback((toastToRemove) => {
+  const lastFocusedElementRef = React__default.useRef(null);
+  const isFocusWithinRef = React__default.useRef(false);
+  const removeToast = React__default.useCallback((toastToRemove) => {
     setToasts((toasts2) => {
       var _toasts_find;
-      if (!((_toasts_find = toasts2.find((toast) => toast.id === toastToRemove.id)) == null ? void 0 : _toasts_find.delete)) {
+      if (!((_toasts_find = toasts2.find((toast2) => toast2.id === toastToRemove.id)) == null ? void 0 : _toasts_find.delete)) {
         ToastState.dismiss(toastToRemove.id);
       }
       return toasts2.filter(({ id: id2 }) => id2 !== toastToRemove.id);
     });
   }, []);
-  React.useEffect(() => {
-    return ToastState.subscribe((toast) => {
-      if (toast.dismiss) {
+  React__default.useEffect(() => {
+    return ToastState.subscribe((toast2) => {
+      if (toast2.dismiss) {
         requestAnimationFrame(() => {
-          setToasts((toasts2) => toasts2.map((t) => t.id === toast.id ? {
+          setToasts((toasts2) => toasts2.map((t) => t.id === toast2.id ? {
             ...t,
             delete: true
           } : t));
@@ -924,19 +924,19 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
       setTimeout(() => {
         ReactDOM.flushSync(() => {
           setToasts((toasts2) => {
-            const indexOfExistingToast = toasts2.findIndex((t) => t.id === toast.id);
+            const indexOfExistingToast = toasts2.findIndex((t) => t.id === toast2.id);
             if (indexOfExistingToast !== -1) {
               return [
                 ...toasts2.slice(0, indexOfExistingToast),
                 {
                   ...toasts2[indexOfExistingToast],
-                  ...toast
+                  ...toast2
                 },
                 ...toasts2.slice(indexOfExistingToast + 1)
               ];
             }
             return [
-              toast,
+              toast2,
               ...toasts2
             ];
           });
@@ -944,7 +944,7 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
       });
     });
   }, []);
-  React.useEffect(() => {
+  React__default.useEffect(() => {
     if (theme !== "system") {
       setActualTheme(theme);
       return;
@@ -982,14 +982,14 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
   }, [
     theme
   ]);
-  React.useEffect(() => {
+  React__default.useEffect(() => {
     if (toasts.length <= 1) {
       setExpanded(false);
     }
   }, [
     toasts
   ]);
-  React.useEffect(() => {
+  React__default.useEffect(() => {
     const handleKeyDown = (event) => {
       var _listRef_current;
       const isHotkeyPressed = hotkey.length > 0 && hotkey.every((key) => event[key] || event.code === key);
@@ -1007,7 +1007,7 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
   }, [
     hotkey
   ]);
-  React.useEffect(() => {
+  React__default.useEffect(() => {
     if (listRef.current) {
       return () => {
         if (lastFocusedElementRef.current) {
@@ -1024,7 +1024,7 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
   ]);
   return (
     // Remove item from normal navigation flow, only available via hotkey
-    /* @__PURE__ */ React.createElement("section", {
+    /* @__PURE__ */ React__default.createElement("section", {
       ref,
       "aria-label": customAriaLabel != null ? customAriaLabel : `${containerAriaLabel} ${hotkeyLabel}`,
       tabIndex: -1,
@@ -1037,7 +1037,7 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
       var _heights_;
       const [y, x] = position2.split("-");
       if (!filteredToasts.length) return null;
-      return /* @__PURE__ */ React.createElement("ol", {
+      return /* @__PURE__ */ React__default.createElement("ol", {
         key: position2,
         dir: dir === "auto" ? getDocumentDirection() : dir,
         tabIndex: -1,
@@ -1087,13 +1087,13 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
           setInteracting(true);
         },
         onPointerUp: () => setInteracting(false)
-      }, filteredToasts.filter((toast) => !toast.position && index === 0 || toast.position === position2).map((toast, index2) => {
+      }, filteredToasts.filter((toast2) => !toast2.position && index === 0 || toast2.position === position2).map((toast2, index2) => {
         var _toastOptions_duration, _toastOptions_closeButton;
-        return /* @__PURE__ */ React.createElement(Toast, {
-          key: toast.id,
+        return /* @__PURE__ */ React__default.createElement(Toast, {
+          key: toast2.id,
           icons,
           index: index2,
-          toast,
+          toast: toast2,
           defaultRichColors: richColors,
           duration: (_toastOptions_duration = toastOptions == null ? void 0 : toastOptions.duration) != null ? _toastOptions_duration : duration,
           className: toastOptions == null ? void 0 : toastOptions.className,
@@ -1110,8 +1110,8 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
           actionButtonStyle: toastOptions == null ? void 0 : toastOptions.actionButtonStyle,
           closeButtonAriaLabel: toastOptions == null ? void 0 : toastOptions.closeButtonAriaLabel,
           removeToast,
-          toasts: filteredToasts.filter((t) => t.position == toast.position),
-          heights: heights.filter((h) => h.position == toast.position),
+          toasts: filteredToasts.filter((t) => t.position == toast2.position),
+          heights: heights.filter((h) => h.position == toast2.position),
           setHeights,
           expandByDefault: expand,
           gap,
@@ -1123,5 +1123,6 @@ const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
   );
 });
 export {
-  Toaster as T
+  Toaster as T,
+  toast as t
 };
