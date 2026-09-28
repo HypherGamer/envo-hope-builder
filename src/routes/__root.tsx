@@ -1,100 +1,113 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  createRootRouteWithContext,
+  createRootRoute,
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
-
+import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteLayout } from "@/components/site/SiteLayout";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, RefreshCw, AlertTriangle } from "lucide-react";
+import { getPublicSiteData } from "@/lib/content.server";
+import { DonationDialogProvider } from "@/lib/donation-context";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
+    <SiteLayout navbarForceSolid>
+      <div className="flex min-h-[65vh] items-center justify-center px-4 py-20">
+        <div className="max-w-md text-center">
+          <p className="text-xs font-bold uppercase tracking-wider text-primary">Error 404</p>
+          <h1 className="mt-3 text-4xl sm:text-5xl font-extrabold text-foreground tracking-tight">
+            Page Not Found
+          </h1>
+          <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+            The page you are looking for may have been moved, renamed, or is temporarily
+            unavailable.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button asChild variant="default">
+              <Link to="/">
+                <ArrowLeft className="h-4 w-4" /> Return to Home
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link to="/contact">Contact Secretariat</Link>
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </SiteLayout>
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
+function RootErrorComponent({ error, reset }: ErrorComponentProps) {
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Try again
-          </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
+    <SiteLayout navbarForceSolid>
+      <div className="flex min-h-[65vh] items-center justify-center px-4 py-20">
+        <div className="max-w-lg text-center">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-destructive/10 text-destructive mb-6">
+            <AlertTriangle className="h-7 w-7" aria-hidden="true" />
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+            Unable to load page
+          </h1>
+          <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+            We encountered an unexpected issue while preparing this content. Please try refreshing
+            or return to the main homepage.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button
+              onClick={() => {
+                router.invalidate();
+                reset();
+              }}
+              variant="default"
+            >
+              <RefreshCw className="h-4 w-4" /> Refresh Page
+            </Button>
+            <Button asChild variant="outline">
+              <Link to="/">Return to Home</Link>
+            </Button>
+          </div>
         </div>
+      </div>
+    </SiteLayout>
+  );
+}
+
+function RootPendingComponent() {
+  return (
+    <div
+      className="flex min-h-[50vh] items-center justify-center py-24"
+      aria-busy="true"
+      aria-live="polite"
+    >
+      <div className="flex flex-col items-center gap-4">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
+        <span className="text-sm font-medium text-muted-foreground">Loading page...</span>
       </div>
     </div>
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Envo Peace" },
-      { name: "description", content: "Envo Peace Hub is a website for the Envo Peace and Development Foundation, an NGO focused on community upliftment." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Envo Peace" },
-      { property: "og:description", content: "Envo Peace Hub is a website for the Envo Peace and Development Foundation, an NGO focused on community upliftment." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Envo Peace" },
-      { name: "twitter:description", content: "Envo Peace Hub is a website for the Envo Peace and Development Foundation, an NGO focused on community upliftment." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a9c1746a-d1ad-45f7-a0ef-cfa158a55860/id-preview-b5c1beed--050c431b-6108-4e86-9b2d-3043ce1eb529.lovable.app-1780864602798.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a9c1746a-d1ad-45f7-a0ef-cfa158a55860/id-preview-b5c1beed--050c431b-6108-4e86-9b2d-3043ce1eb529.lovable.app-1780864602798.png" },
+      { name: "theme-color", content: "#1b4d3e" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/png", sizes: "48x48", href: "/favicon-48.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -103,10 +116,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
+  loader: async () => {
+    try {
+      const siteData = await getPublicSiteData();
+      return { siteData };
+    } catch {
+      return { siteData: undefined };
+    }
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
+  errorComponent: RootErrorComponent,
+  pendingComponent: RootPendingComponent,
 });
 
 function RootShell({ children }: { children: ReactNode }) {
@@ -124,12 +146,10 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
+  const data = Route.useLoaderData();
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+    <DonationDialogProvider initialSettings={data?.siteData?.donation}>
       <Outlet />
-    </QueryClientProvider>
+    </DonationDialogProvider>
   );
 }

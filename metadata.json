@@ -1,0 +1,5 @@
+{
+  "name": "Envo Peace Hub",
+  "description": "Envo Peace Hub website for the Envo Peace and Development Foundation, an NGO focused on community upliftment, youth empowerment, education, and peace advocacy.",
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
